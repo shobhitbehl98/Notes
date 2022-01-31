@@ -1,5 +1,6 @@
 package com.example.notes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -12,11 +13,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class forgotpassword extends AppCompatActivity {
 
     private EditText enterEmail;
     private RelativeLayout mpasswordRecoverbutton;
     private TextView mgobacktologin;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,7 @@ public class forgotpassword extends AppCompatActivity {
         enterEmail=findViewById(R.id.typeEmail);
         mpasswordRecoverbutton=findViewById(R.id.recover);
         mgobacktologin=findViewById(R.id.textbacktologin);
+        firebaseAuth=FirebaseAuth.getInstance();
 
         mgobacktologin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +49,16 @@ public class forgotpassword extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Enter Your mail",Toast.LENGTH_SHORT).show();
                 }else{
                    // we have to send mail, after setting up firebase
+                    firebaseAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(),"Mail Sent, Recover your account using mail",Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.notes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -16,6 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText mloginemail;
@@ -23,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout mlogin;
     private TextView mforgotpassword;
     private RelativeLayout mgotosignup;
+    private FirebaseAuth firebaseAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         mlogin=findViewById(R.id.login);
         mforgotpassword=findViewById(R.id.forgotPassword);
         mgotosignup=findViewById(R.id.gotosignup);
+        firebaseAuth=FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser!=null){
+            finish();
+            startActivity(new Intent(MainActivity.this,NotesActivity.class));
+        }
         mgotosignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,16 +73,36 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"All Fields are required",Toast.LENGTH_SHORT).show();
                 }else{
                     //Firebase
+                    firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(),"Checking Verification",Toast.LENGTH_SHORT).show();
+                                checkMailVerification();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Account Does Not Exist",Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
                 }
             }
         });
 
     }
-
+        private void checkMailVerification(){
+          FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+          if(firebaseUser.isEmailVerified()){
+              Toast.makeText(getApplicationContext(),"LoggedIn",Toast.LENGTH_SHORT).show();
+              finish();
+              startActivity(new Intent(MainActivity.this,NotesActivity.class));
+          }else{
+              Toast.makeText(getApplicationContext(),"Email not verified",Toast.LENGTH_SHORT).show();
+              firebaseAuth.signOut();
+          }
+        }
         public void setStatusBarColor(){
-            if (Build.VERSION.SDK_INT >= 21) {
-                Window w = getWindow();
-                w.setStatusBarColor(Color.parseColor("#F732AC"));
-            }
+            Window w = getWindow();
+            w.setStatusBarColor(Color.parseColor("#F732AC"));
         }
 }
