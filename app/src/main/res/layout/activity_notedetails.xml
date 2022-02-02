@@ -4,39 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createnote">
+    tools:context=".notedetails">
 
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofcreatenote"
+        android:id="@+id/toolbarofnotedetail"
         android:background="@color/white">
 
-     <EditText
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:paddingTop="12dp"
-         android:textSize="20sp"
-         android:textStyle="bold"
-         android:textColor="@color/black"
-         android:hint="Enter your note title"
-         android:id="@+id/createtitleofnote"
-         >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="12dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="title display"
+            android:id="@+id/titleofnotedetail"
+            >
 
-     </EditText>
+        </TextView>
     </androidx.appcompat.widget.Toolbar>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:background="#CABAF1"
         android:gravity="top|left"
         android:textColor="@color/black"
         android:hint="Enter your content"
-        android:layout_below="@id/toolbarofcreatenote"
+        android:layout_below="@id/toolbarofnotedetail"
         android:padding="15dp"
-        android:id="@+id/createontentofnote">
+        android:id="@+id/contentofnotedetail">
 
     </EditText>
 
@@ -48,8 +48,8 @@
         android:layout_marginBottom="30dp"
         android:layout_marginRight="30dp"
         android:layout_gravity="bottom|end"
-        android:id="@+id/save_note"
-        android:src="@drawable/save_icon"
+        android:id="@+id/gotoeditnote"
+        android:src="@drawable/write"
         android:background="#CABAF1"
         app:maxImageSize="56dp"
         >
