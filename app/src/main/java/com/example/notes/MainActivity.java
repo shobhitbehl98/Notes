@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mforgotpassword;
     private RelativeLayout mgotosignup;
     private FirebaseAuth firebaseAuth;
+    private ProgressBar mprogressbar;
 
 
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setStatusBarColor();
         mloginemail=findViewById(R.id.loginemail);
+        mprogressbar=findViewById(R.id.progressbar);
         mloginpassword=findViewById(R.id.loginpassword);
         mlogin=findViewById(R.id.login);
         mforgotpassword=findViewById(R.id.forgotPassword);
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"All Fields are required",Toast.LENGTH_SHORT).show();
                 }else{
                     //Firebase
+                    mprogressbar.setVisibility(View.VISIBLE);
                     firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Checking Verification",Toast.LENGTH_SHORT).show();
                                 checkMailVerification();
                             }else{
+                                mprogressbar.setVisibility(View.INVISIBLE);
                                 Toast.makeText(getApplicationContext(),"Account Does Not Exist",Toast.LENGTH_SHORT).show();
 
                             }
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
               startActivity(new Intent(MainActivity.this,NotesActivity.class));
           }else{
               Toast.makeText(getApplicationContext(),"Email not verified",Toast.LENGTH_SHORT).show();
+              mprogressbar.setVisibility(View.INVISIBLE);
               firebaseAuth.signOut();
           }
         }

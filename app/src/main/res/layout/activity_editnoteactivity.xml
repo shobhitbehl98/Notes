@@ -47,14 +47,24 @@
         android:layout_marginRight="30dp"
         android:layout_gravity="bottom|end"
         android:id="@+id/saveeditnote"
-        android:src="@drawable/save_icon"
+        android:src="@drawable/ic_baseline_arrow_circle_up_24"
         android:background="#CABAF1"
-        app:maxImageSize="56dp"
+        app:maxImageSize="40dp"
         >
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbareditnote"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        >
 
+    </ProgressBar>
 
 
 </RelativeLayout>
