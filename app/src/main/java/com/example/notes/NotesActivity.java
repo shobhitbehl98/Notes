@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -51,7 +52,7 @@ public class NotesActivity extends AppCompatActivity {
         mcreatenotesfab=findViewById(R.id.createnotefab);
         getSupportActionBar().setTitle("All Notes");
         ColorDrawable colorDrawable= new ColorDrawable(Color.parseColor("#F732AC"));
-
+        setStatusBarColor();
         // Set BackgroundDrawable
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -208,5 +209,10 @@ public class NotesActivity extends AppCompatActivity {
        int ran=(int)(Math.random() * li.size());
 
        return li.get(ran);
+    }
+
+    public void setStatusBarColor(){
+        Window w = getWindow();
+        w.setStatusBarColor(Color.parseColor("#F732AC"));
     }
 }
