@@ -3,7 +3,7 @@ CRUD notes android application using Google Firebase E-mail authentication. It u
 
 #
 
-![Splash Screen](https://github.com/shobhitbehl98/Notes/blob/master/readmeimages/iloveimg-resized/Screenshot_20220221-114903.jpg)
+![Splash Screen](https://github.com/shobhitbehl98/Notes/blob/master/readmeimages/iloveimg-resized/Screenshot_20220221-114903.jpg)(https://github.com/shobhitbehl98/Notes/blob/master/readmeimages/iloveimg-resized/Screenshot_20220221-111840.jpg)
 
 # Login Screen
 ![Splash Screen](https://github.com/shobhitbehl98/Notes/blob/master/readmeimages/iloveimg-resized/Screenshot_20220221-111840.jpg)
