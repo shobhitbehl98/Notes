@@ -213,6 +213,6 @@ public class NotesActivity extends AppCompatActivity {
 
     public void setStatusBarColor(){
         Window w = getWindow();
-        w.setStatusBarColor(Color.parseColor("#F732AC"));
+        w.setStatusBarColor(Color.parseColor("#1F1046"));
     }
 }

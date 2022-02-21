@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class signup extends AppCompatActivity {
         getSupportActionBar().hide();
         msignupemail=findViewById(R.id.signupemail);
         msignuppassword=findViewById(R.id.signuppassword);
+        setStatusBarColor();
         msignup=findViewById(R.id.signup);
         mgotologin=findViewById(R.id.textbacktologin);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -90,5 +93,10 @@ public class signup extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(),"Failed to Send Verification",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void setStatusBarColor(){
+        Window w = getWindow();
+        w.setStatusBarColor(Color.parseColor("#F732AC"));
     }
 }
