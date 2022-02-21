@@ -1,5 +1,5 @@
 # Notes
-CRUD notes android application using Google Firebase E-mail authentication. It uses staggered layout to display the notes with random background colours. Here are some screenshots of the UI the app.
+CRUD notes android application using Google Firebase E-mail authentication. It uses staggered layout to display the notes with random background colours. Here are some screenshots of the UI of the app.
 
 #
 
